@@ -73,12 +73,23 @@ public class FriendManager : MonoBehaviour
         }, DisplayPlayFabError);
     }
     public void OnAddFriend()
-    { //to add friend based on display name
+    { 
+        if (tgtFriend.text == "")
+        {
+            return;
+        }
+
+        //to add friend based on ID
         AddFriend(tgtFriend.text);
     }
 
     public void OnUnFriend()
     {
+        if (tgtFriend.text == "")
+        {
+            return;
+        }
+
         RemoveFriend(tgtFriend.text);
     }
     void RemoveFriend(string pfid)
@@ -212,7 +223,7 @@ public class FriendManager : MonoBehaviour
 
     public void SendItem()
     {
-        if (selectedItem == null)
+        if ((selectedItem == null) || (playerIDInput.text == ""))
         {
             return;
         }
@@ -304,6 +315,11 @@ public class FriendManager : MonoBehaviour
 
     public void OnAcceptGiftButton()
     {
+        if ((playerIDInput.text == "") || (tradeIDInput.text == ""))
+        {
+            return;
+        }
+
         AcceptGiftFrom(playerIDInput.text, tradeIDInput.text);
     }
 
